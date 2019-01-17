@@ -1,0 +1,8 @@
+dpkt = 1.8.8
+numpy == 1.13.1
+scipy == 0.14.0
+matplotlib == 1.5.3
+scikit-learn == 0.19.0
+xgboost == 0.6a2
+tensorflow == 0.12.1
+pyemd == 0.3.0
