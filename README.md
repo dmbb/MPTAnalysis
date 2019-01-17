@@ -1,10 +1,10 @@
 ## Index
 
-1 - Classifiers description
-2- Extracting features for feeding classifiers
-3 - Running the classifiers
-4 - Watching some more figures
-5 - Full example for Facet analysis
+1. Classifiers description
+2. Extracting features for feeding classifiers
+3. Running the classifiers
+4. Watching some more figures
+5. Full example for Facet analysis
 
 #### Python 2.7 package requirements
 Install the required Python packages by running:
@@ -13,6 +13,8 @@ Install the required Python packages by running:
 [**Note**] Not using virtualenvs, packages will be installed system-wide.
 
 #### Traffic Captures Location
+Traffic captures are available at [to appear].
+
 Copy each `TrafficCaptures` folder into the respective path in **MPTAnalysis** repo:
 
     MPTAnalysis/FacetAnalysis/TrafficCaptures
