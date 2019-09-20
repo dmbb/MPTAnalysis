@@ -13,7 +13,7 @@ Install the required Python packages by running:
 [**Note**] Not using virtualenvs, packages will be installed system-wide.
 
 #### Traffic Captures Location
-Traffic captures are available at [to appear].
+Traffic captures are available [here](https://turbina.gsd.inesc-id.pt/resources/resources.html).
 
 Copy each `TrafficCaptures` folder into the respective path in **MPTAnalysis** repo:
 
