@@ -58,13 +58,13 @@ def ParseCapture(capsFolder, sampleFolder):
     for sample in os.listdir(capsFolder + sampleFolder):
         descriptors = []
         f = open(capsFolder + sampleFolder + "/" + sample)
-        print sample
+        print(sample)
         if not os.path.exists(auxFolder + os.path.dirname(capsFolder) + "/" + sampleFolder + "/" + sample):
         	os.makedirs(auxFolder + os.path.dirname(capsFolder) + "/" + sampleFolder + "/" + sample)
         packet_count = open(auxFolder + os.path.dirname(capsFolder) + "/" + sampleFolder + "/" + sample + '/packetCount_0', 'w')
         timestamps = open(auxFolder + os.path.dirname(capsFolder) + "/" + sampleFolder + "/" + sample + "/timestamps", 'w')
         for binWidth in BIN_WIDTH:
-            print auxFolder + os.path.dirname(capsFolder) + "/" + sampleFolder + "/" + sample + '/packetCount_' + str(binWidth)
+            print(auxFolder + os.path.dirname(capsFolder) + "/" + sampleFolder + "/" + sample + '/packetCount_' + str(binWidth))
             descriptors.append(open(auxFolder + os.path.dirname(capsFolder) + "/" + sampleFolder + "/" + sample + '/packetCount_' + str(binWidth), 'w'))
 
 
@@ -89,7 +89,7 @@ def ParseCapture(capsFolder, sampleFolder):
                         packet_count.write("%s\n" % len(buf))
 
             except Exception as e:
-                print "[Exception]" + str(e)
+                print("[Exception]" + str(e))
         packet_count.close()
         timestamps.close()
         for i, descript in enumerate(BIN_WIDTH):

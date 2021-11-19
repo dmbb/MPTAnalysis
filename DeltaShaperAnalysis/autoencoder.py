@@ -34,9 +34,9 @@ def gatherDataset_january(data_folder, cfg, SPLIT_FACTOR):
     f = open(data_folder + cfg[1] + "_dataset.csv", 'r')
     reader = csv.reader(f, delimiter=',')
     fac = list(reader)
-    print "###########################################"
-    print "Configuration " + cfg[1]
-    print "###########################################"
+    print("###########################################")
+    print("Configuration " + cfg[1])
+    print("###########################################")
 
     #Convert data to floats (and labels to integers)
     reg_data = []
@@ -115,9 +115,9 @@ def gatherDataset_10times(data_folder, cfg, split_factor):
     f = open(data_folder + cfg[1] + "_dataset.csv", 'r')
     reader = csv.reader(f, delimiter=',')
     fac = list(reader)
-    print "###########################################"
-    print "Configuration " + cfg[1]
-    print "###########################################"
+    print("###########################################")
+    print("Configuration " + cfg[1])
+    print("###########################################")
 
 
     #Convert data to floats (and labels to integers)
@@ -296,7 +296,7 @@ def runANN_FixedParams(data_folder,cfg):
     ae = Autoencoder(num_input, 128, 128, 0.8, 0.5, 32)
     for i in range(epochs):
         if(i%50==0):
-            print "Epoch: " + str(i)
+            print("Epoch: " + str(i))
         ae.run_epoch(train_x)
 
     """
@@ -426,11 +426,11 @@ def runANNSearch(data_folder,cfg):
 
                         #end = time.time()
                         #print(end - start)
-                        print ("%f - Batch Size:%i, Learning Rate:%f, n_hidden:%i, repr_size:%i" % (avg_auc, batch_size, learning_rate, int(n_hidden), int(repr_size)))
+                        print(("%f - Batch Size:%i, Learning Rate:%f, n_hidden:%i, repr_size:%i" % (avg_auc, batch_size, learning_rate, int(n_hidden), int(repr_size))))
 
-    print "################\n# Summary"
-    print "Max. AUC: %f, N_hidden: %i, Repr_Size: %i" % (max_auc, best_config[2],best_config[3])
-    print "Avg. AUC %f: " % (np.mean(auc_report,axis=0))
+    print("################\n# Summary")
+    print("Max. AUC: %f, N_hidden: %i, Repr_Size: %i" % (max_auc, best_config[2],best_config[3]))
+    print("Avg. AUC %f: " % (np.mean(auc_report,axis=0)))
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
@@ -527,8 +527,8 @@ def runANN_BO(data_folder,cfg):
     annBO.maximize(init_points=5, n_iter=50, acq="ei", xi=1e-2, **gp_params)
 
     print('Final Results')
-    print('Autoencoder: %f' % annBO.res['max']['max_val'])
-    print('Autoencoder: %f' % np.mean(annBO.res['all']['values'],axis=0))
+    print(('Autoencoder: %f' % annBO.res['max']['max_val']))
+    print(('Autoencoder: %f' % np.mean(annBO.res['all']['values'],axis=0)))
 
 
 
@@ -542,7 +542,7 @@ if __name__ == "__main__":
     "DeltaShaperTraffic_160"]]
 
 
-    print "Autoencoder - Packet Length Features - Set2"
+    print("Autoencoder - Packet Length Features - Set2")
     feature_set = 'PL_60' #'Stats_60' / 'PL_60'
     data_folder = 'FeatureSets/' + feature_set + '/'
 

@@ -34,7 +34,7 @@ def genSimilarityGraph():
         EMD_specificity = np.load(threshold_folder + 'FacetTraffic_' + str(cfg) + '_Christmas/Rate_50_Specificity.npy')
 
         EMD_auc = np.trapz(np.array(EMD_sensitivity)[::-1], (np.array(EMD_specificity))[::-1])
-        print "EMD AUC" + str(EMD_auc)
+        print("EMD AUC" + str(EMD_auc))
 
         ax1.plot(1 - EMD_specificity, EMD_sensitivity, linestyle[0], lw=2, color=colors[0], label = 'EMD ROC (AUC = %0.2f)' % (EMD_auc))
 
@@ -43,7 +43,7 @@ def genSimilarityGraph():
         X_specificity = np.load(xclassifier_folder + 'ROC_True_FacetTraffic_'+ str(cfg) + '_Christmas_20_Specificity.npy')
 
         X_auc = np.trapz(np.array(X_sensitivity)[::-1], (1-np.array(X_specificity))[::-1])
-        print "X AUC" + str(X_auc)
+        print("X AUC" + str(X_auc))
 
         ax1.plot(1 - X_specificity, X_sensitivity, linestyle[0], lw=2, color=colors[1], label = 'Chi-Square ROC (AUC = %0.2f)' % (X_auc))
 
@@ -75,7 +75,7 @@ def genCompareStatsGraph():
         stats_dec_tree_fpr = np.load(xgboost_folder + 'Stats_60/ROC_DecisionTree_FacetTraffic_' + str(cfg) + '_Christmas_Specificity.npy')
 
         stats_dec_tree_auc = np.trapz(stats_dec_tree_sensitivity, stats_dec_tree_fpr)
-        print "stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc)
+        print("stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc))
         ax1.plot(stats_dec_tree_fpr, stats_dec_tree_sensitivity, linestyle[0], lw=2, color=colors[n], label = 'Sum. Stats., s=' + str(cfg) + '%% ROC (AUC = %0.2f)' % (stats_dec_tree_auc))
 
 
@@ -103,7 +103,7 @@ def genCompareStatsGraph():
         stats_dec_tree_fpr = np.load(xgboost_folder + 'Stats_60/ROC_RandomForest_FacetTraffic_' + str(cfg) + '_Christmas_Specificity.npy')
 
         stats_dec_tree_auc = np.trapz(stats_dec_tree_sensitivity, stats_dec_tree_fpr)
-        print "stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc)
+        print("stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc))
         ax1.plot(stats_dec_tree_fpr, stats_dec_tree_sensitivity, linestyle[0], lw=2, color=colors[n], label = 'Sum. Stats., s=' + str(cfg) + '%% ROC (AUC = %0.2f)' % (stats_dec_tree_auc))
 
 
@@ -130,7 +130,7 @@ def genCompareStatsGraph():
         stats_dec_tree_fpr = np.load(xgboost_folder + 'Stats_60/ROC_XGBoost_FacetTraffic_' + str(cfg) + '_Christmas_Specificity.npy')
 
         stats_dec_tree_auc = np.trapz(stats_dec_tree_sensitivity, stats_dec_tree_fpr)
-        print "stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc)
+        print("stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc))
         ax1.plot(stats_dec_tree_fpr, stats_dec_tree_sensitivity, linestyle[0], lw=2, color=colors[n], label = 'Sum. Stats., s=' + str(cfg) + '%% ROC (AUC = %0.2f)' % (stats_dec_tree_auc))
 
 
@@ -160,7 +160,7 @@ def genCompareHistGraph():
         stats_dec_tree_fpr = np.load(xgboost_folder + 'PL_60/ROC_DecisionTree_FacetTraffic_' + str(cfg) + '_Christmas_Specificity.npy')
 
         stats_dec_tree_auc = np.trapz(stats_dec_tree_sensitivity, stats_dec_tree_fpr)
-        print "stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc)
+        print("stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc))
         ax1.plot(stats_dec_tree_fpr, stats_dec_tree_sensitivity, linestyle[0], lw=2, color=colors[n], label = 'K=5, s=' + str(cfg) + '%% ROC (AUC = %0.2f)' % (stats_dec_tree_auc))
 
 
@@ -188,7 +188,7 @@ def genCompareHistGraph():
         stats_dec_tree_fpr = np.load(xgboost_folder + 'PL_60/ROC_RandomForest_FacetTraffic_' + str(cfg) + '_Christmas_Specificity.npy')
 
         stats_dec_tree_auc = np.trapz(stats_dec_tree_sensitivity, stats_dec_tree_fpr)
-        print "stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc)
+        print("stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc))
         ax1.plot(stats_dec_tree_fpr, stats_dec_tree_sensitivity, linestyle[0], lw=2, color=colors[n], label = 'K=5, s=' + str(cfg) + '%% ROC (AUC = %0.2f)' % (stats_dec_tree_auc))
 
 
@@ -215,7 +215,7 @@ def genCompareHistGraph():
         stats_dec_tree_fpr = np.load(xgboost_folder + 'PL_60/ROC_XGBoost_FacetTraffic_' + str(cfg) + '_Christmas_Specificity.npy')
 
         stats_dec_tree_auc = np.trapz(stats_dec_tree_sensitivity, stats_dec_tree_fpr)
-        print "stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc)
+        print("stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc))
         ax1.plot(stats_dec_tree_fpr, stats_dec_tree_sensitivity, linestyle[0], lw=2, color=colors[n], label = 'K=5, s=' + str(cfg) + '%% ROC (AUC = %0.2f)' % (stats_dec_tree_auc))
 
 
@@ -259,7 +259,7 @@ def genFeatureImportance():
                 fig = plt.figure(figsize=(7,8))
                 ax1 = fig.add_subplot(111)
                 plt.subplots_adjust(right=0.96, top=0.98)
-                ax1.barh(range(0,len(imp[:max_features])), imp[:max_features], align='center', height=0.5, color="gray")
+                ax1.barh(list(range(0,len(imp[:max_features]))), imp[:max_features], align='center', height=0.5, color="gray")
 
                 plt.xlabel('Feature Importance Score', fontsize=25)
                 if(feature is "Stats_60"):
@@ -285,14 +285,14 @@ def genFeatureImportance():
                     plt.subplots_adjust(left=0.14)
                     ax1.set_yticklabels(num[:max_features])
                     #Gather statistics
-                    print "Feature %s, Configuration %s, Classifier %s" % (feature, cfg, classifier)
-                    print "Useful bins %s" % (sum(i > 0 for i in imp))
+                    print("Feature %s, Configuration %s, Classifier %s" % (feature, cfg, classifier))
+                    print("Useful bins %s" % (sum(i > 0 for i in imp)))
                     plt.xlim(xmin=0,xmax=0.10)
                     top_f.append(num[:max_features])
 
                 elif("Stats_60" is feature):
                     selected_names = name[:max_features]
-                    print selected_names
+                    print(selected_names)
 
                     proper_names = []
                     for k, sn in enumerate(selected_names):
@@ -316,8 +316,8 @@ def genFeatureImportance():
                     plt.subplots_adjust(left=0.465)
                     #Gather statistics
                     top_f.append(proper_names)
-                    print "Feature %s, Configuration %s, Classifier %s" % (feature, cfg, classifier)
-                    print "Useful stats %s" % (sum(i > 0 for i in imp))
+                    print("Feature %s, Configuration %s, Classifier %s" % (feature, cfg, classifier))
+                    print("Useful stats %s" % (sum(i > 0 for i in imp)))
                 elif("2sidedPL_60" is feature):
                     selected_features = num[:max_features]
                     selected_names = name[:max_features]
@@ -330,14 +330,14 @@ def genFeatureImportance():
                             proper_names.append(str(selected_features[k]) + " (Out)")
                     ax1.set_yticklabels(proper_names)
                     #Gather statistics
-                    print "Feature %s, Configuration %s, Classifier %s" % (feature, cfg, classifier)
-                    print "Useful bins %s" % (sum(i > 0 for i in imp))
+                    print("Feature %s, Configuration %s, Classifier %s" % (feature, cfg, classifier))
+                    print("Useful bins %s" % (sum(i > 0 for i in imp)))
 
                 elif("bigrams20" is feature):
                     ax1.set_yticklabels(name[:max_features])
                     #Gather statistics
-                    print "Feature %s, Configuration %s, Classifier %s" % (feature, cfg, classifier)
-                    print "Useful Bigrams %s" % (sum(i > 0 for i in imp))
+                    print("Feature %s, Configuration %s, Classifier %s" % (feature, cfg, classifier))
+                    print("Useful Bigrams %s" % (sum(i > 0 for i in imp)))
 
                     top_f.append(num[:max_features])
 
@@ -376,7 +376,7 @@ def ObtainFrequencyDistribution(sample, binWidth):
         bin_dict[str(i)]+=1
 
     #Order bin_key : num_packets
-    od_dict = collections.OrderedDict(sorted(bin_dict.items(), key=lambda t: float(t[0])))
+    od_dict = collections.OrderedDict(sorted(list(bin_dict.items()), key=lambda t: float(t[0])))
     bin_list = []
     for i in od_dict:
         bin_list.append(int(od_dict[i]))
@@ -399,7 +399,7 @@ def genCompareHistGraphPoster():
         stats_dec_tree_fpr = np.load(xgboost_folder + 'PL_60/ROC_Decision Tree_FacetTraffic_' + str(cfg) + '_Christmas_Specificity.npy')
 
         stats_dec_tree_auc = np.trapz(stats_dec_tree_sensitivity, stats_dec_tree_fpr)
-        print "stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc)
+        print("stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc))
         ax1.plot(stats_dec_tree_fpr, stats_dec_tree_sensitivity, linestyle[0], lw=2, color=colors[n], label = 'K=5, s=' + str(cfg) + '%% ROC (AUC = %0.2f)' % (stats_dec_tree_auc))
 
 
@@ -427,7 +427,7 @@ def genCompareHistGraphPoster():
         stats_dec_tree_fpr = np.load(xgboost_folder + 'PL_60/ROC_RandomForest_FacetTraffic_' + str(cfg) + '_Christmas_Specificity.npy')
 
         stats_dec_tree_auc = np.trapz(stats_dec_tree_sensitivity, stats_dec_tree_fpr)
-        print "stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc)
+        print("stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc))
         ax1.plot(stats_dec_tree_fpr, stats_dec_tree_sensitivity, linestyle[0], lw=2, color=colors[n], label = 'K=5, s=' + str(cfg) + '%% ROC (AUC = %0.2f)' % (stats_dec_tree_auc))
 
 
@@ -454,7 +454,7 @@ def genCompareHistGraphPoster():
         stats_dec_tree_fpr = np.load(xgboost_folder + 'PL_60/ROC_XGBoost_FacetTraffic_' + str(cfg) + '_Christmas_Specificity.npy')
 
         stats_dec_tree_auc = np.trapz(stats_dec_tree_sensitivity, stats_dec_tree_fpr)
-        print "stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc)
+        print("stats AUC " + str(cfg) + ": " + str(stats_dec_tree_auc))
         ax1.plot(stats_dec_tree_fpr, stats_dec_tree_sensitivity, linestyle[0], lw=2, color=colors[n], label = 'K=5, s=' + str(cfg) + '%% ROC (AUC = %0.2f)' % (stats_dec_tree_auc))
 
 
@@ -485,7 +485,7 @@ def genSimilarityGraphPoster():
         EMD_specificity = np.load(threshold_folder + 'FacetTraffic_' + str(cfg) + '_Christmas/Rate_50_Specificity.npy')
 
         EMD_auc = np.trapz(np.array(EMD_sensitivity)[::-1], (np.array(EMD_specificity))[::-1])
-        print "EMD AUC" + str(EMD_auc)
+        print("EMD AUC" + str(EMD_auc))
 
         ax1.plot(1 - EMD_specificity, EMD_sensitivity, linestyle[0], lw=2, color=colors[0], label = 'EMD ROC (AUC = %0.2f)' % (EMD_auc))
 
@@ -494,7 +494,7 @@ def genSimilarityGraphPoster():
         X_specificity = np.load(xclassifier_folder + 'ROC_True_FacetTraffic_'+ str(cfg) + '_Christmas_20_Specificity.npy')
 
         X_auc = np.trapz(np.array(X_sensitivity)[::-1], (1-np.array(X_specificity))[::-1])
-        print "X AUC" + str(X_auc)
+        print("X AUC" + str(X_auc))
 
         ax1.plot(1 - X_specificity, X_sensitivity, linestyle[0], lw=2, color=colors[1], label = 'Chi-Square ROC (AUC = %0.2f)' % (X_auc))
 

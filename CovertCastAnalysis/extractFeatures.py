@@ -21,7 +21,7 @@ def ExtractFeatures(sampleFolder):
 
     for sample in os.listdir(sampleFolder):
         f = open(sampleFolder + "/" + sample )
-        print sample
+        print(sample)
         pcap = dpkt.pcapng.Reader(f)
 
         #Analyse packets transmited
@@ -846,7 +846,7 @@ def ExtractFeatures(sampleFolder):
         if(not written_header):
             arff.write(', '.join(f_names))
             arff.write('\n')
-            print "Writing header"
+            print("Writing header")
             written_header = True
 
         l = []
@@ -865,7 +865,7 @@ if __name__ == "__main__":
 
 
     for sampleFolder in sampleFolders:
-        print "\n#############################"
-        print "Parsing " + sampleFolder
-        print "#############################"
+        print("\n#############################")
+        print("Parsing " + sampleFolder)
+        print("#############################")
         ExtractFeatures(sampleFolder)

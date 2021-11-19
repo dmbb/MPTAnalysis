@@ -136,13 +136,13 @@ def ComputeRate(sampleFolder, emdResults, num_irregular_samples, num_regular_sam
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
 
-    print "TPR90 = " + str(val90)
-    print "TPR80 = " + str(val80)
-    print "TPR70 = " + str(val70)
+    print("TPR90 = " + str(val90))
+    print("TPR80 = " + str(val80))
+    print("TPR70 = " + str(val70))
     
-    print "AUC"
+    print("AUC")
     auc = np.trapz(np.array(Sensitivity)[::-1], (1-np.array(Specificity))[::-1])
-    print auc
+    print(auc)
     #ROC Curve
     np.save('EMD/' + sampleFolder + baselines[1] + '/Rate_' + str(binWidth) + '_Sensitivity', np.array(Sensitivity))
     np.save('EMD/' + sampleFolder + baselines[1] + '/Rate_' + str(binWidth) + '_Specificity', np.array(Specificity))
@@ -165,13 +165,13 @@ def ComputeRate(sampleFolder, emdResults, num_irregular_samples, num_regular_sam
     plt.close(fig)
 
     conservative_stats = "Con. acc: " + str(conservative_acc) + " Con. TPR:" + str(conservative_tnr) + " delta:" + str(conservative_delta)
-    print conservative_stats
+    print(conservative_stats)
     return max_stats
 
 
 def GenerateDists(samples, binWidth):
     dists = []
-    print "Building distributions"
+    print("Building distributions")
 
     for sample in samples:
         #print sample
@@ -203,7 +203,7 @@ def GenerateDists(samples, binWidth):
 
         dists.append(Gklist)
         f.close()
-    print "End - Building distributions"
+    print("End - Building distributions")
 
     #Build distance matrix
     Gk = {}
@@ -279,16 +279,16 @@ def plotEMD(sampleFolder, baselines, binWidth):
     for i in range(0,len(regularSamples)):
         acc += emdResults[i]
     acc = acc/len(regularSamples)
-    print "AVG Regular " + str(acc)
+    print("AVG Regular " + str(acc))
 
     max_stat = ComputeRate(sampleFolder, emdResults, len(allSamples) - len(regularSamples), len(regularSamples), binWidth)
-    print max_stat
+    print(max_stat)
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
 
     means = [np.mean(x) for x in emdResults]
-    plt.scatter(range(1,len(emdResults)+1), means)
+    plt.scatter(list(range(1,len(emdResults)+1)), means)
 
 
     minor_ticks = np.arange(0, len(emdResults)+1, 1)
@@ -325,11 +325,11 @@ if __name__ == "__main__":
 
     for sampleFolder in sampleFolders:
         for baselines in cfgs:
-            print "==========================================="
-            print "Analyzing " + baselines[0] + " - " + baselines[1]
+            print("===========================================")
+            print("Analyzing " + baselines[0] + " - " + baselines[1])
             for binWidth in BIN_WIDTH:
-                print "##############"
-                print "BinWidth: " + str(binWidth)
+                print("##############")
+                print("BinWidth: " + str(binWidth))
                 if not os.path.exists('EMD/' + sampleFolder + baselines[1]):
                     os.makedirs('EMD/' + sampleFolder + baselines[1])
                 plotEMD(sampleFolder, baselines, binWidth)

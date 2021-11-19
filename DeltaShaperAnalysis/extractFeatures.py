@@ -28,7 +28,7 @@ def ExtractFeatures(sampleFolder):
 
     for sample in os.listdir(sampleFolder):
         f = open(sampleFolder + "/" + sample + "/" + sample)
-        print sample
+        print(sample)
         pcap = dpkt.pcap.Reader(f)
 
         #Analyse packets transmited
@@ -194,7 +194,7 @@ def ExtractFeatures(sampleFolder):
             binned = RoundToNearest(i,binWidth)
             bin_dict[str(binned)]+=1
 
-        od_dict = collections.OrderedDict(sorted(bin_dict.items(), key=lambda t: float(t[0])))
+        od_dict = collections.OrderedDict(sorted(list(bin_dict.items()), key=lambda t: float(t[0])))
         bin_list = []
         for i in od_dict:
             bin_list.append(od_dict[i]) #Fraction of packets inside a given bin
@@ -210,7 +210,7 @@ def ExtractFeatures(sampleFolder):
             binned = RoundToNearest(i,binWidth)
             bin_dict2[str(binned)]+=1
 
-        od_dict2 = collections.OrderedDict(sorted(bin_dict2.items(), key=lambda t: float(t[0])))
+        od_dict2 = collections.OrderedDict(sorted(list(bin_dict2.items()), key=lambda t: float(t[0])))
         bin_list2 = []
         for i in od_dict2:
             bin_list2.append(od_dict2[i])#/float(len(packetSizesIn))) #Fraction of packets inside a given bin
@@ -998,14 +998,14 @@ def ExtractFeatures(sampleFolder):
         f_values.append(in_p90BurstBytes)
         """
 
-        print len(f_names)
+        print(len(f_names))
         f_names.append('Class')
         f_values.append(label)
 
         if(not written_header):
             arff.write(', '.join(f_names))
             arff.write('\n')
-            print "Writing header"
+            print("Writing header")
             written_header = True
 
         l = []
@@ -1796,7 +1796,7 @@ def FeatureExtractionStatsBenchmark(sampleFolder):
         if(not written_header):
             arff.write(', '.join(f_names))
             arff.write('\n')
-            print "Writing header"
+            print("Writing header")
             written_header = True
 
         l = []
@@ -1806,8 +1806,8 @@ def FeatureExtractionStatsBenchmark(sampleFolder):
         arff.write('\n')
     arff.close()
     end_time = time.time()
-    print "Total time elapsed: " + "{0:.5f}".format(end_time - start_time)
-    print "Average sample time: "+ "{0:.5f}".format(np.mean(sample_times))
+    print("Total time elapsed: " + "{0:.5f}".format(end_time - start_time))
+    print("Average sample time: "+ "{0:.5f}".format(np.mean(sample_times)))
     return feature_set_folder
 
 def FeatureExtractionPLBenchmark(sampleFolder):
@@ -1866,12 +1866,12 @@ def FeatureExtractionPLBenchmark(sampleFolder):
                     pass
         f.close()
 
-        od_dict = collections.OrderedDict(sorted(bin_dict.items(), key=lambda t: float(t[0])))
+        od_dict = collections.OrderedDict(sorted(list(bin_dict.items()), key=lambda t: float(t[0])))
         bin_list = []
         for i in od_dict:
             bin_list.append(od_dict[i])
 
-        od_dict2 = collections.OrderedDict(sorted(bin_dict2.items(), key=lambda t: float(t[0])))
+        od_dict2 = collections.OrderedDict(sorted(list(bin_dict2.items()), key=lambda t: float(t[0])))
         bin_list2 = []
         for i in od_dict2:
             bin_list2.append(od_dict2[i])
@@ -1904,7 +1904,7 @@ def FeatureExtractionPLBenchmark(sampleFolder):
         if(not written_header):
             arff.write(', '.join(f_names))
             arff.write('\n')
-            print "Writing header"
+            print("Writing header")
             written_header = True
 
         l = []
@@ -1916,8 +1916,8 @@ def FeatureExtractionPLBenchmark(sampleFolder):
         #print "Sample processing time: " + "{0:.5f}".format(end_sample_time - start_sample_time)
     arff.close()
     end_time = time.time()
-    print "Total time elapsed: " + "{0:.5f}".format(end_time - start_time)
-    print "Average sample time: "+ "{0:.5f}".format(np.mean(sample_times))
+    print("Total time elapsed: " + "{0:.5f}".format(end_time - start_time))
+    print("Average sample time: "+ "{0:.5f}".format(np.mean(sample_times)))
     return feature_set_folder
 
 def FeatureExtractionPLBenchmark_reb(sampleFolder):
@@ -1967,12 +1967,12 @@ def FeatureExtractionPLBenchmark_reb(sampleFolder):
                     pass
         f.close()
 
-        od_dict = collections.OrderedDict(sorted(bin_dict.items(), key=lambda t: float(t[0])))
+        od_dict = collections.OrderedDict(sorted(list(bin_dict.items()), key=lambda t: float(t[0])))
         bin_list = []
         for i in od_dict:
             bin_list.append(od_dict[i])
 
-        od_dict2 = collections.OrderedDict(sorted(bin_dict2.items(), key=lambda t: float(t[0])))
+        od_dict2 = collections.OrderedDict(sorted(list(bin_dict2.items()), key=lambda t: float(t[0])))
         bin_list2 = []
         for i in od_dict2:
             bin_list2.append(od_dict2[i])
@@ -2005,7 +2005,7 @@ def FeatureExtractionPLBenchmark_reb(sampleFolder):
         if(not written_header):
             arff.write(', '.join(f_names))
             arff.write('\n')
-            print "Writing header"
+            print("Writing header")
             written_header = True
 
         l = []
@@ -2017,8 +2017,8 @@ def FeatureExtractionPLBenchmark_reb(sampleFolder):
         #print "Sample processing time: " + "{0:.5f}".format(end_sample_time - start_sample_time)
     arff.close()
     end_time = time.time()
-    print "Total time elapsed: " + "{0:.5f}".format(end_time - start_time)
-    print "Average sample time: "+ "{0:.5f}".format(np.mean(sample_times))
+    print("Total time elapsed: " + "{0:.5f}".format(end_time - start_time))
+    print("Average sample time: "+ "{0:.5f}".format(np.mean(sample_times)))
 
 
 
@@ -2033,19 +2033,19 @@ if __name__ == "__main__":
     if not os.path.exists('FeatureSets'):
                 os.makedirs('FeatureSets')
     
-    print "Generating Dataset based on Summary Statistic Features"
+    print("Generating Dataset based on Summary Statistic Features")
     for sampleFolder in sampleFolders:
-        print "\n#############################"
-        print "Parsing " + sampleFolder
-        print "#############################"
+        print("\n#############################")
+        print("Parsing " + sampleFolder)
+        print("#############################")
         feature_set_folder = FeatureExtractionStatsBenchmark(sampleFolder)
     GenerateDatasets(feature_set_folder + '/')
     
 
-    print "Generating Dataset based on Binned Packet Length Features"
+    print("Generating Dataset based on Binned Packet Length Features")
     for sampleFolder in sampleFolders:
-        print "\n#############################"
-        print "Parsing " + sampleFolder
-        print "#############################"
+        print("\n#############################")
+        print("Parsing " + sampleFolder)
+        print("#############################")
         feature_set_folder = FeatureExtractionPLBenchmark(sampleFolder)
     GenerateDatasets(feature_set_folder + '/')

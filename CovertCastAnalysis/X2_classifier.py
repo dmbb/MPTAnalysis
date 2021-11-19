@@ -35,7 +35,7 @@ def ComputeBiGramDistributions(sampleFolder, cfg, binWidth):
             bin_dict = {}
             bigrams=[]
             #Generate the set of all possible bigrams
-            for i in product(range(0,1500, binWidth), repeat=2):
+            for i in product(list(range(0,1500, binWidth)), repeat=2):
                 bin_dict[str(i).replace(" ", "")] = 1
 
 
@@ -231,35 +231,35 @@ def Prepare_X_Fixed(fig_folder, cfg,binWidth,freq_dists):
 
     model_chat1, model_censored1 = buildModels(filtered_freq_dists1)
     acc1, tnr1, fnr1, tpr1, fpr1, ppv1, npv1 = X_Classify_Fixed(cfg,binWidth,filtered_freq_dists2, model_chat1, model_censored1)
-    print "1st Fold"
-    print "Acc = " + str(acc1)
-    print "TPR = " + str(tpr1)
-    print "TNR = " + str(tnr1)
-    print "FPR = " + str(fpr1)
-    print "FNR = " + str(fnr1)
-    print "PPV = " + str(ppv1)
-    print "NPV = " + str(npv1)
+    print("1st Fold")
+    print("Acc = " + str(acc1))
+    print("TPR = " + str(tpr1))
+    print("TNR = " + str(tnr1))
+    print("FPR = " + str(fpr1))
+    print("FNR = " + str(fnr1))
+    print("PPV = " + str(ppv1))
+    print("NPV = " + str(npv1))
 
     model_chat2, model_censored2 = buildModels(filtered_freq_dists2)
     acc2, tnr2, fnr2, tpr2, fpr2, ppv2, npv2 = X_Classify_Fixed(cfg,binWidth,filtered_freq_dists1, model_chat2, model_censored2)
-    print "\n2nd Fold"
-    print "Acc = " + str(acc2)
-    print "TPR = " + str(tpr2)
-    print "TNR = " + str(tnr2)
-    print "FPR = " + str(fpr2)
-    print "FNR = " + str(fnr2)
-    print "PPV = " + str(ppv2)
-    print "NPV = " + str(npv2)
+    print("\n2nd Fold")
+    print("Acc = " + str(acc2))
+    print("TPR = " + str(tpr2))
+    print("TNR = " + str(tnr2))
+    print("FPR = " + str(fpr2))
+    print("FNR = " + str(fnr2))
+    print("PPV = " + str(ppv2))
+    print("NPV = " + str(npv2))
 
-    print "\n###################"
-    print "Average"
-    print "Acc = " + str((acc1 + acc2)/2.0)
-    print "TPR = " + str((tpr1 + tpr2)/2.0)
-    print "TNR = " + str((tnr1 + tnr2)/2.0)
-    print "FPR = " + str((fpr1 + fpr2)/2.0)
-    print "FNR = " + str((fnr1 + fnr2)/2.0)
-    print "PPV = " + str((ppv1 + ppv2)/2.0)
-    print "NPV = " + str((npv1 + npv2)/2.0)
+    print("\n###################")
+    print("Average")
+    print("Acc = " + str((acc1 + acc2)/2.0))
+    print("TPR = " + str((tpr1 + tpr2)/2.0))
+    print("TNR = " + str((tnr1 + tnr2)/2.0))
+    print("FPR = " + str((fpr1 + fpr2)/2.0))
+    print("FNR = " + str((fnr1 + fnr2)/2.0))
+    print("PPV = " + str((ppv1 + ppv2)/2.0))
+    print("NPV = " + str((npv1 + npv2)/2.0))
 
 
 ######################################################################################
@@ -346,26 +346,26 @@ def Prepare_X_RatioReproduction(fig_folder, cfg,binWidth,freq_dists):
 
     model_chat1, model_censored1 = buildModels(filtered_freq_dists1)
     max_acc, max_delta, max_tpr, max_fpr, val90, val80, val70, specificity, sensitivity = X_Classify_RatioReproduction(cfg,binWidth,filtered_freq_dists2, model_chat1, model_censored1)
-    print "1st Fold"
-    print "TPR90 = " + str(val90)
-    print "TPR80 = " + str(val80)
-    print "TPR70 = " + str(val70)
-    print "Max acc: " + str(max_acc) + " Max TPR:" + str(max_tpr) + " Max FPR:" + str(max_fpr) + " delta:" + str(max_delta)
+    print("1st Fold")
+    print("TPR90 = " + str(val90))
+    print("TPR80 = " + str(val80))
+    print("TPR70 = " + str(val70))
+    print("Max acc: " + str(max_acc) + " Max TPR:" + str(max_tpr) + " Max FPR:" + str(max_fpr) + " delta:" + str(max_delta))
 
     model_chat2, model_censored2 = buildModels(filtered_freq_dists2)
     max_acc2, max_delta2, max_tpr2, max_fpr2, val902, val802, val702, specificity2, sensitivity2 = X_Classify_RatioReproduction(cfg,binWidth,filtered_freq_dists1, model_chat2, model_censored2)
-    print "2nd Fold"
-    print "TPR90 = " + str(val902)
-    print "TPR80 = " + str(val802)
-    print "TPR70 = " + str(val702)
-    print "Max acc: " + str(max_acc2) + " Max TPR:" + str(max_tpr2) + " Max FPR:" + str(max_fpr2) + " delta:" + str(max_delta2)
+    print("2nd Fold")
+    print("TPR90 = " + str(val902))
+    print("TPR80 = " + str(val802))
+    print("TPR70 = " + str(val702))
+    print("Max acc: " + str(max_acc2) + " Max TPR:" + str(max_tpr2) + " Max FPR:" + str(max_fpr2) + " delta:" + str(max_delta2))
 
-    print "###################"
-    print "Average FPR"
-    print "TPR90 = " + str((val902+val90)/2.0)
-    print "TPR80 = " + str((val802+val80)/2.0)
-    print "TPR70 = " + str((val702+val70)/2.0)
-    print "Max acc: " + str((max_acc+max_acc2)/2.0) + " Max TPR:" + str((max_tpr+max_tpr2)/2.0) + " Max FPR:" + str((max_fpr+max_fpr2)/2.0) + " delta:" + str((max_delta + max_delta2)/2.0)
+    print("###################")
+    print("Average FPR")
+    print("TPR90 = " + str((val902+val90)/2.0))
+    print("TPR80 = " + str((val802+val80)/2.0))
+    print("TPR70 = " + str((val702+val70)/2.0))
+    print("Max acc: " + str((max_acc+max_acc2)/2.0) + " Max TPR:" + str((max_tpr+max_tpr2)/2.0) + " Max FPR:" + str((max_fpr+max_fpr2)/2.0) + " delta:" + str((max_delta + max_delta2)/2.0))
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
@@ -522,17 +522,17 @@ if __name__ == "__main__":
     fig_folder = 'X2/' + os.path.dirname(sampleFolder) + '/'
 
 
-    print "###########################"
-    print os.path.dirname(sampleFolder)
-    print "###########################"
+    print("###########################")
+    print(os.path.dirname(sampleFolder))
+    print("###########################")
     for cfg in cfgs:
         random.seed(a=1) # re-seed
-        print "====================================="
-        print "X classifier - " + cfg[0] + " vs " + cfg[1]
+        print("=====================================")
+        print("X classifier - " + cfg[0] + " vs " + cfg[1])
         for binWidth in BIN_WIDTH:
-            print "---------------------"
-            print "Bin Width: " + str(binWidth)
-            print "---------------------"
+            print("---------------------")
+            print("Bin Width: " + str(binWidth))
+            print("---------------------")
             #Compute bigram distributions and shuffle the samples
             freq_dists = ComputeBiGramDistributions(sampleFolder, cfg, binWidth)
             x = random.sample(freq_dists[0], len(freq_dists[0]))

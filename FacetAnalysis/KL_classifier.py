@@ -52,7 +52,7 @@ def ComputeFrequencyDistributions(sampleFolder, cfg, binWidth):
                 bin_dict[str(i)]+=1
 
             #Order bin_key : num_packets
-            od_dict = collections.OrderedDict(sorted(bin_dict.items(), key=lambda t: float(t[0])))
+            od_dict = collections.OrderedDict(sorted(list(bin_dict.items()), key=lambda t: float(t[0])))
             bin_list = []
             for i in od_dict:
                 bin_list.append(float(od_dict[i]))
@@ -137,7 +137,7 @@ def KL_Classify(freq_dists):
         BvsA_matrix.append(BxVsAy)
 
     end_time = time.time()
-    print "Model Building Time: " + "{0:.5f}".format(end_time - start_time)
+    print("Model Building Time: " + "{0:.5f}".format(end_time - start_time))
     ##########################
     #Compute success metric
     #Set A - YouTube
@@ -169,9 +169,9 @@ def KL_Classify(freq_dists):
                     TruePositives += 1
 
 
-    print "Total Accuracy: " + str(success / float(total_KL_distances))
-    print "TruePositives: " + str(TruePositives / float(total_KL_distances/2.0))
-    print "TrueNegatives: " + str(TrueNegatives / float(total_KL_distances/2.0))
+    print("Total Accuracy: " + str(success / float(total_KL_distances)))
+    print("TruePositives: " + str(TruePositives / float(total_KL_distances/2.0)))
+    print("TrueNegatives: " + str(TrueNegatives / float(total_KL_distances/2.0)))
 
 
 if __name__ == "__main__":
@@ -179,11 +179,11 @@ if __name__ == "__main__":
     sampleFolders = ['TrafficCaptures/240Resolution/']
 
     for sampleFolder in sampleFolders:
-        print "###########################"
-        print os.path.dirname(sampleFolder)
-        print "###########################"
+        print("###########################")
+        print(os.path.dirname(sampleFolder))
+        print("###########################")
         for cfg in cfgs:
-            print "KL classifier - " + cfg[0] + " vs " + cfg[1]
+            print("KL classifier - " + cfg[0] + " vs " + cfg[1])
             for binWidth in BIN_WIDTH:
-                print "Bin Width: " + str(binWidth)
+                print("Bin Width: " + str(binWidth))
                 KL_Classify(ComputeFrequencyDistributions(sampleFolder, cfg, binWidth))

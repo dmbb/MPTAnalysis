@@ -30,9 +30,9 @@ def gatherHoldoutData(data_folder, cfg):
     f = open(data_folder + cfg[1] + "_dataset.csv", 'r')
     reader = csv.reader(f, delimiter=',')
     fac = list(reader)
-    print "###########################################"
-    print "Configuration " + cfg[1]
-    print "###########################################"
+    print("###########################################")
+    print("Configuration " + cfg[1])
+    print("###########################################")
 
     #Convert data to floats (and labels to integers)
     reg_data = []
@@ -109,9 +109,9 @@ def gatherAllData(data_folder, cfg):
     f = open(data_folder + cfg[1] + "_dataset.csv", 'r')
     reader = csv.reader(f, delimiter=',')
     fac = list(reader)
-    print "###########################################"
-    print "Configuration " + cfg[1]
-    print "###########################################"
+    print("###########################################")
+    print("Configuration " + cfg[1])
+    print("###########################################")
 
     #Convert data to floats (and labels to integers)
     reg_data = []
@@ -158,7 +158,7 @@ def gatherAllData(data_folder, cfg):
     #Shuffle positive/negative samples for CV purposes
     x_shuf = []
     y_shuf = []
-    index_shuf = range(len(train_x))
+    index_shuf = list(range(len(train_x)))
     shuffle(index_shuf)
     for i in index_shuf:
         x_shuf.append(train_x[i])
@@ -169,7 +169,7 @@ def gatherAllData(data_folder, cfg):
 
 def runXGBoost(data_folder, cfg):
     #Gather the dataset
-    print "Gather dataset"
+    print("Gather dataset")
     train_x, train_y, test_x, test_y = gatherHoldoutData(data_folder, cfg)
 
 
@@ -186,14 +186,14 @@ def runXGBoost(data_folder, cfg):
 
     # evaluate predictions
     accuracy = accuracy_score(np.asarray(test_y), predictions)
-    print("Accuracy: %.2f%%" % (accuracy * 100.0))
+    print(("Accuracy: %.2f%%" % (accuracy * 100.0)))
 
     y_pred = model.predict_proba(np.asarray(test_x))[:,1]
-    print 'Area under ROC:', roc_auc_score(np.asarray(test_y),y_pred)
+    print('Area under ROC:', roc_auc_score(np.asarray(test_y),y_pred))
 
 
 def runClassification_CV(data_folder,cfg,classifier):
-    print "Gather dataset"
+    print("Gather dataset")
     train_x, train_y= gatherAllData(data_folder, cfg)
 
     model = classifier[0]
@@ -201,8 +201,8 @@ def runClassification_CV(data_folder,cfg,classifier):
 
     #Report Cross-Validation Accuracy
     scores = cross_val_score(model, np.asarray(train_x), np.asarray(train_y), cv=10)
-    print clf_name
-    print "Avg. Accuracy: " + str(sum(scores)/float(len(scores)))
+    print(clf_name)
+    print("Avg. Accuracy: " + str(sum(scores)/float(len(scores))))
 
     cv = KFold(n_splits=10)
     tprs = []
@@ -237,16 +237,16 @@ def runClassification_CV(data_folder,cfg,classifier):
     unblock95 = True
     for n, i in enumerate(mean_tpr):
         if(i >= 0.7 and unblock70):
-            print '70%  TPR  = ' + str(mean_fpr[n])
+            print('70%  TPR  = ' + str(mean_fpr[n]))
             unblock70 = False
         if(i >= 0.8 and unblock80):
-            print '80%  TPR  = ' + str(mean_fpr[n])
+            print('80%  TPR  = ' + str(mean_fpr[n]))
             unblock80 = False
         if(i >= 0.9 and unblock90):
-            print '90%  TPR  = ' + str(mean_fpr[n])
+            print('90%  TPR  = ' + str(mean_fpr[n]))
             unblock90 = False
         if(i >= 0.95 and unblock95):
-            print '95%  TPR  = ' + str(mean_fpr[n])
+            print('95%  TPR  = ' + str(mean_fpr[n]))
             unblock95 = False
 
     #Figure properties
@@ -298,5 +298,5 @@ if __name__ == "__main__":
 
     for cfg in cfgs:
         for classifier in classifiers:
-            print "Running classifiers for " + cfg[0] + " and " + cfg[1]
+            print("Running classifiers for " + cfg[0] + " and " + cfg[1])
             runClassification_CV(data_folder, cfg, classifier)

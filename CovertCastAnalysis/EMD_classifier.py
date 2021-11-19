@@ -90,9 +90,9 @@ def ComputeRate(sampleFolder, emdResults, num_irregular_samples, num_regular_sam
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
 
-    print "AUC"
+    print("AUC")
     auc = np.trapz(np.array(Sensitivity), 1 - np.array(Specificity))
-    print auc
+    print(auc)
     #ROC Curve
     ax1.plot(1 - np.array(Specificity), np.array(Sensitivity), 'k.-', color='black', label = 'ROC (AUC = %0.2f)' % (auc))
     ax1.plot([0, 1], [0, 1], 'k--', lw=2, color='orange', label = 'Random Guess')
@@ -116,7 +116,7 @@ def ComputeRate(sampleFolder, emdResults, num_irregular_samples, num_regular_sam
 
 def GenerateDists(samples, binWidth):
     dists = []
-    print "Building distributions"
+    print("Building distributions")
 
     for sample in samples:
         #print sample
@@ -148,7 +148,7 @@ def GenerateDists(samples, binWidth):
 
         dists.append(Gklist)
         f.close()
-    print "End - Building distributions"
+    print("End - Building distributions")
 
     #Build distance matrix
     Gk = {}
@@ -224,10 +224,10 @@ def plotEMD(sampleFolder, baselines, binWidth):
     for i in range(0,len(regularSamples)):
         acc += emdResults[i]
     acc = acc/len(regularSamples)
-    print "AVG Regular " + str(acc)
+    print("AVG Regular " + str(acc))
 
     max_stat = ComputeRate(sampleFolder, emdResults, len(allSamples) - len(regularSamples), len(regularSamples), binWidth)
-    print max_stat
+    print(max_stat)
 
 
 if __name__ == "__main__":
@@ -239,11 +239,11 @@ if __name__ == "__main__":
 
     for sampleFolder in sampleFolders:
         for baselines in cfgs:
-            print "==========================================="
-            print "Analyzing " + baselines[0] + " - " + baselines[1]
+            print("===========================================")
+            print("Analyzing " + baselines[0] + " - " + baselines[1])
             for binWidth in BIN_WIDTH:
-                print "##############"
-                print "BinWidth: " + str(binWidth)
+                print("##############")
+                print("BinWidth: " + str(binWidth))
                 if not os.path.exists('EMD/' + sampleFolder + baselines[1]):
                     os.makedirs('EMD/' + sampleFolder + baselines[1])
                 plotEMD(sampleFolder, baselines, binWidth)

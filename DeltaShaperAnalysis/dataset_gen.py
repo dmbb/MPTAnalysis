@@ -11,11 +11,11 @@ def MergeDatasets(data_folder):
 
     features_files = [data_folder + "deltashaper_dataset.csv", data_folder + "RegularTraffic_dataset.csv"]
 
-    print "Merging full dataset..."
+    print("Merging full dataset...")
     header_saved = False
     with open(data_folder + '/full_dataset.csv','wb') as fout:
         for filename in features_files:
-            print "merging " + filename
+            print("merging " + filename)
             with open(filename) as fin:
                 header = next(fin)
                 if not header_saved:
@@ -23,7 +23,7 @@ def MergeDatasets(data_folder):
                     header_saved = True
                 for line in fin:
                     fout.write(line)
-    print "Dataset merged!"
+    print("Dataset merged!")
 
 
 def CombinedMerging(data_folder):
@@ -34,11 +34,11 @@ def CombinedMerging(data_folder):
 
     features_files = [data_folder + "DeltaShaperTraffic_320_dataset.csv", data_folder + "RegularTraffic_dataset.csv"]
 
-    print "Merging dataset..."
+    print("Merging dataset...")
     header_saved = False
     with open(data_folder + '/regular_320_dataset.csv','wb') as fout:
         for filename in features_files:
-            print "merging " + filename
+            print("merging " + filename)
             with open(filename) as fin:
                 header = next(fin)
                 if not header_saved:
@@ -46,15 +46,15 @@ def CombinedMerging(data_folder):
                     header_saved = True
                 for line in fin:
                     fout.write(line)
-    print "Dataset merged!"
+    print("Dataset merged!")
 
     features_files = [data_folder + "DeltaShaperTraffic_160_dataset.csv", data_folder + "RegularTraffic_dataset.csv"]
 
-    print "Merging dataset..."
+    print("Merging dataset...")
     header_saved = False
     with open(data_folder + '/regular_160_dataset.csv','wb') as fout:
         for filename in features_files:
-            print "merging " + filename
+            print("merging " + filename)
             with open(filename) as fin:
                 header = next(fin)
                 if not header_saved:
@@ -62,7 +62,7 @@ def CombinedMerging(data_folder):
                     header_saved = True
                 for line in fin:
                     fout.write(line)
-    print "Dataset merged!"
+    print("Dataset merged!")
 
 
 

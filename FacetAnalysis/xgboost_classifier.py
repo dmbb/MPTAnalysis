@@ -41,9 +41,9 @@ def gatherHoldoutData(data_folder, cfg):
     f = open(data_folder + cfg[1] + "_dataset.csv", 'r')
     reader = csv.reader(f, delimiter=',')
     fac = list(reader)
-    print "###########################################"
-    print "Configuration " + cfg[1]
-    print "###########################################"
+    print("###########################################")
+    print("Configuration " + cfg[1])
+    print("###########################################")
 
     #Convert data to floats (and labels to integers)
     reg_data = []
@@ -128,9 +128,9 @@ def gatherAllData(data_folder, cfg, dataset_fraction):
 
     #print "Size regular dataset: " + str(len(reg))
     #print "Size censored dataset: " + str(len(fac))
-    print "###########################################"
-    print "Configuration " + cfg[1]
-    print "###########################################"
+    print("###########################################")
+    print("Configuration " + cfg[1])
+    print("###########################################")
 
     #Convert data to floats (and labels to integers)
     features_id = reg[0]
@@ -179,7 +179,7 @@ def gatherAllData(data_folder, cfg, dataset_fraction):
     #Shuffle positive/negative samples for CV purposes
     x_shuf = []
     y_shuf = []
-    index_shuf = range(len(train_x))
+    index_shuf = list(range(len(train_x)))
     shuffle(index_shuf)
     for i in index_shuf:
         x_shuf.append(train_x[i])
@@ -189,7 +189,7 @@ def gatherAllData(data_folder, cfg, dataset_fraction):
 
 
 def runClassification_CV(data_folder,feature_set, cfg,classifier):
-    print "Gather dataset"
+    print("Gather dataset")
     dataset_fraction = 1.0
     train_x, train_y, features_id = gatherAllData(data_folder, cfg, dataset_fraction)
 
@@ -198,7 +198,7 @@ def runClassification_CV(data_folder,feature_set, cfg,classifier):
 
     #Report Cross-Validation Accuracy
     #scores = cross_val_score(model, np.asarray(train_x), np.asarray(train_y), cv=10)
-    print clf_name
+    print(clf_name)
     #print "Avg. Accuracy: " + str(sum(scores)/float(len(scores)))
 
     cv = KFold(n_splits=10)
@@ -259,9 +259,9 @@ def runClassification_CV(data_folder,feature_set, cfg,classifier):
     mean_tpr = np.mean(tprs, axis=0)
     mean_tpr[-1] = 1.0
     mean_auc = auc(mean_fpr, mean_tpr)
-    print "Model AUC: " + "{0:.3f}".format(mean_auc)
-    print "Training time (Avg. fold): " + str(np.mean(train_times, axis=0))
-    print "Test time (Avg. fold): " + str(np.mean(test_times, axis=0))
+    print("Model AUC: " + "{0:.3f}".format(mean_auc))
+    print("Training time (Avg. fold): " + str(np.mean(train_times, axis=0)))
+    print("Test time (Avg. fold): " + str(np.mean(test_times, axis=0)))
 
 
     unblock70 = True
@@ -270,16 +270,16 @@ def runClassification_CV(data_folder,feature_set, cfg,classifier):
     unblock95 = True
     for n, i in enumerate(mean_tpr):
         if(i >= 0.7 and unblock70):
-            print '70%  TPR  = ' + "{0:.3f}".format(mean_fpr[n])
+            print('70%  TPR  = ' + "{0:.3f}".format(mean_fpr[n]))
             unblock70 = False
         if(i >= 0.8 and unblock80):
-            print '80%  TPR  = ' + "{0:.3f}".format(mean_fpr[n])
+            print('80%  TPR  = ' + "{0:.3f}".format(mean_fpr[n]))
             unblock80 = False
         if(i >= 0.9 and unblock90):
-            print '90%  TPR  = ' + "{0:.3f}".format(mean_fpr[n])
+            print('90%  TPR  = ' + "{0:.3f}".format(mean_fpr[n]))
             unblock90 = False
         if(i >= 0.95 and unblock95):
-            print '95%  TPR  = ' + "{0:.3f}".format(mean_fpr[n])
+            print('95%  TPR  = ' + "{0:.3f}".format(mean_fpr[n]))
             unblock95 = False
 
     #Figure properties
@@ -321,7 +321,7 @@ def runClassification_CV(data_folder,feature_set, cfg,classifier):
         mean_imp = (importances[0][n] + importances[1][n] + importances[2][n] + importances[3][n] + importances[4][n] + importances[5][n] + importances[6][n] + importances[7][n] + importances[8][n] + importances[9][n])/10.0
         mean_importances.append(mean_imp)
     #print mean_importances
-    f_imp = zip(bin_number,mean_importances,features_id)
+    f_imp = list(zip(bin_number,mean_importances,features_id))
     f_imp.sort(key = lambda t: t[1], reverse=True)
 
     np.save('xgBoost/' + feature_set + "/FeatureImportance_" + clf_name + "_" + cfg[1], np.array(f_imp))
@@ -329,7 +329,7 @@ def runClassification_CV(data_folder,feature_set, cfg,classifier):
 
 
 def runClassification_adhocCV(data_folder,feature_set, cfg,classifier):
-    print "Gather dataset"
+    print("Gather dataset")
     dataset_fraction = 1.0
     train_x, train_y, features_id = gatherAllData(data_folder, cfg, dataset_fraction)
 
@@ -338,7 +338,7 @@ def runClassification_adhocCV(data_folder,feature_set, cfg,classifier):
 
     #Report Cross-Validation Accuracy
     #scores = cross_val_score(model, np.asarray(train_x), np.asarray(train_y), cv=10)
-    print clf_name
+    print(clf_name)
     #print "Avg. Accuracy: " + str(sum(scores)/float(len(scores)))
 
     cv = KFold(n_splits=10)
@@ -382,9 +382,9 @@ def runClassification_adhocCV(data_folder,feature_set, cfg,classifier):
     mean_tpr = np.mean(tprs, axis=0)
     mean_tpr[-1] = 1.0
     mean_auc = auc(mean_fpr, mean_tpr)
-    print "Model AUC: " + "{0:.3f}".format(mean_auc)
-    print "Training time (Avg. fold): " + str(np.mean(train_times, axis=0))
-    print "Test time (Avg. fold): " + str(np.mean(test_times, axis=0))
+    print("Model AUC: " + "{0:.3f}".format(mean_auc))
+    print("Training time (Avg. fold): " + str(np.mean(train_times, axis=0)))
+    print("Test time (Avg. fold): " + str(np.mean(test_times, axis=0)))
 
 
     unblock70 = True
@@ -393,16 +393,16 @@ def runClassification_adhocCV(data_folder,feature_set, cfg,classifier):
     unblock95 = True
     for n, i in enumerate(mean_tpr):
         if(i >= 0.7 and unblock70):
-            print '70%  TPR  = ' + "{0:.3f}".format(mean_fpr[n])
+            print('70%  TPR  = ' + "{0:.3f}".format(mean_fpr[n]))
             unblock70 = False
         if(i >= 0.8 and unblock80):
-            print '80%  TPR  = ' + "{0:.3f}".format(mean_fpr[n])
+            print('80%  TPR  = ' + "{0:.3f}".format(mean_fpr[n]))
             unblock80 = False
         if(i >= 0.9 and unblock90):
-            print '90%  TPR  = ' + "{0:.3f}".format(mean_fpr[n])
+            print('90%  TPR  = ' + "{0:.3f}".format(mean_fpr[n]))
             unblock90 = False
         if(i >= 0.95 and unblock95):
-            print '95%  TPR  = ' + "{0:.3f}".format(mean_fpr[n])
+            print('95%  TPR  = ' + "{0:.3f}".format(mean_fpr[n]))
             unblock95 = False
 
     #Figure properties
@@ -444,7 +444,7 @@ def runClassification_adhocCV(data_folder,feature_set, cfg,classifier):
         mean_imp = (importances[0][n] + importances[1][n] + importances[2][n] + importances[3][n] + importances[4][n] + importances[5][n] + importances[6][n] + importances[7][n] + importances[8][n] + importances[9][n])/10.0
         mean_importances.append(mean_imp)
     #print mean_importances
-    f_imp = zip(bin_number,mean_importances,features_id)
+    f_imp = list(zip(bin_number,mean_importances,features_id))
     f_imp.sort(key = lambda t: t[1], reverse=True)
 
     #np.save('xgBoost/' + feature_set + "/FeatureImportance_" + clf_name + "_" + cfg[1], np.array(f_imp))
@@ -477,14 +477,14 @@ if __name__ == "__main__":
     if not os.path.exists('xgBoost/' + feature_set):
                 os.makedirs('xgBoost/' + feature_set)
 
-    print "\n================================================="
-    print "One-class SVM - Summary Statistic Features - Set1"
-    print "================================================="
+    print("\n=================================================")
+    print("One-class SVM - Summary Statistic Features - Set1")
+    print("=================================================")
     for cfg in cfgs:
         for classifier in classifiers:
-            print "Running classifiers for " + cfg[0] + " and " + cfg[1]
+            print("Running classifiers for " + cfg[0] + " and " + cfg[1])
             runClassification_CV(data_folder, feature_set, cfg, classifier)
-    print "#####################################\n"
+    print("#####################################\n")
 
 
     feature_set = 'PL_60' #'Stats_60' / 'PL_60'
@@ -492,10 +492,10 @@ if __name__ == "__main__":
     if not os.path.exists('xgBoost/' + feature_set):
                 os.makedirs('xgBoost/' + feature_set)
 
-    print "\n================================================="
-    print "One-class SVM - Packet Length Features - Set2"
-    print "================================================="
+    print("\n=================================================")
+    print("One-class SVM - Packet Length Features - Set2")
+    print("=================================================")
     for cfg in cfgs:
         for classifier in classifiers:
-            print "Running classifiers for " + cfg[0] + " and " + cfg[1]
+            print("Running classifiers for " + cfg[0] + " and " + cfg[1])
             runClassification_CV(data_folder, feature_set, cfg, classifier)

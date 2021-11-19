@@ -119,9 +119,9 @@ def gatherHoldoutData_10times(data_folder, cfg, split_factor):
     f = open(data_folder + cfg[1] + "_dataset.csv", 'r')
     reader = csv.reader(f, delimiter=',')
     fac = list(reader)
-    print "###########################################"
-    print "Configuration " + cfg[1]
-    print "###########################################"
+    print("###########################################")
+    print("Configuration " + cfg[1])
+    print("###########################################")
 
 
     #Convert data to floats (and labels to integers)
@@ -213,9 +213,9 @@ def gatherAllData(data_folder, cfg):
     f = open(data_folder + cfg[1] + "_dataset.csv", 'r')
     reader = csv.reader(f, delimiter=',')
     fac = list(reader)
-    print "###########################################"
-    print "Configuration " + cfg[1]
-    print "###########################################"
+    print("###########################################")
+    print("Configuration " + cfg[1])
+    print("###########################################")
 
     #Convert data to floats (and labels to integers)
     reg_data = []
@@ -262,7 +262,7 @@ def gatherAllData(data_folder, cfg):
     #Shuffle positive/negative samples for CV purposes
     x_shuf = []
     y_shuf = []
-    index_shuf = range(len(train_x))
+    index_shuf = list(range(len(train_x)))
     shuffle(index_shuf)
     for i in index_shuf:
         x_shuf.append(train_x[i])
@@ -277,7 +277,7 @@ def runIsolationSearch(data_folder, cfg, cnt_factor):
     max_tree = 0
 
     for n, t in enumerate(range(10,500,10)):
-        print t
+        print(t)
         acc = 0
         tnr = 0
         fnr = 0
@@ -337,12 +337,12 @@ def runIsolationSearch(data_folder, cfg, cnt_factor):
 
         ac = acc/3
         if(int(t)%100 == 0):
-            print "100 trees = " + str(ac)
+            print("100 trees = " + str(ac))
         if(ac > max_acc):
             max_acc = ac
             max_tree = int(t)
-    print max_acc
-    print max_tree
+    print(max_acc)
+    print(max_tree)
 
 def runIsolationRounds(data_folder, cfg, cnt_factor):
 
@@ -405,13 +405,13 @@ def runIsolationRounds(data_folder, cfg, cnt_factor):
         npv+=NPV
 
 
-    print "Acc = " + str(acc/10)
-    print "TPR = " + str(tpr/10)
-    print "TNR = " + str(tnr/10)
-    print "FPR = " + str(fpr/10)
-    print "FNR = " + str(fnr/10)
-    print "PPV = " + str(ppv/10)
-    print "NPV = " + str(npv/10)
+    print("Acc = " + str(acc/10))
+    print("TPR = " + str(tpr/10))
+    print("TNR = " + str(tnr/10))
+    print("FPR = " + str(fpr/10))
+    print("FNR = " + str(fnr/10))
+    print("PPV = " + str(ppv/10))
+    print("NPV = " + str(npv/10))
 
 def runIsolation(data_folder, cfg, cnt_factor):
     rng = np.random.RandomState(42)
@@ -455,13 +455,13 @@ def runIsolation(data_folder, cfg, cnt_factor):
     FPR = FPositives/(FPositives+float(TNegatives)+eps)
     PPV = TPositives/(TPositives+float(FPositives))
     NPV = TNegatives/(TNegatives+float(FNegatives)+eps)
-    print "Acc = " + str(accuracy)
-    print "TPR = " + str(TPR)
-    print "TNR = " + str(TNR)
-    print "FPR = " + str(FPR)
-    print "FNR = " + str(FNR)
-    print "PPV = " + str(PPV)
-    print "NPV = " + str(NPV)
+    print("Acc = " + str(accuracy))
+    print("TPR = " + str(TPR))
+    print("TNR = " + str(TNR))
+    print("FPR = " + str(FPR))
+    print("FNR = " + str(FNR))
+    print("PPV = " + str(PPV))
+    print("NPV = " + str(NPV))
 
 def runOptimizedIso_CV(data_folder, cfg):
     train_X, train_Y, test_X, test_Y = gatherHoldoutData_10times(data_folder, cfg, 0.9)
@@ -513,11 +513,11 @@ def runOptimizedIso_CV(data_folder, cfg):
                 if(mean_auc > max_auc):
                     max_auc = mean_auc
                     best_config = [mean_fpr, mean_tpr, estimator,s]
-                print ("%f - estimator:%i, max-samples: %i" % (mean_auc, estimator, s))
+                print(("%f - estimator:%i, max-samples: %i" % (mean_auc, estimator, s)))
 
-    print "################\n# Summary"
-    print "Max. AUC: %f, Estimator: %i, Samples: %i" % (max_auc, best_config[2],best_config[3])
-    print "Avg. AUC: %f, " % (np.mean(auc_report,axis=0))
+    print("################\n# Summary")
+    print("Max. AUC: %f, Estimator: %i, Samples: %i" % (max_auc, best_config[2],best_config[3]))
+    print("Avg. AUC: %f, " % (np.mean(auc_report,axis=0)))
     #Figure properties
 
     fig = plt.figure()
@@ -549,7 +549,7 @@ if __name__ == "__main__":
     if not os.path.exists('Isolation'):
             os.makedirs('Isolation')
 
-    print "Isolation Forest - Summary Statistic Features - Set1"
+    print("Isolation Forest - Summary Statistic Features - Set1")
     feature_set = 'Stats_60' #'Stats_60' / 'PL_60'
     data_folder = 'FeatureSets/' + feature_set + '/'
     if not os.path.exists('Isolation/' + feature_set):
@@ -558,9 +558,9 @@ if __name__ == "__main__":
 
     for cfg in cfgs:
         runOptimizedIso_CV(data_folder,cfg)
-    print "#####################################\n"
+    print("#####################################\n")
 
-    print "Isolation Forest - Packet Length Features - Set2"
+    print("Isolation Forest - Packet Length Features - Set2")
     feature_set = 'PL_60' #'Stats_60' / 'PL_60'
     data_folder = 'FeatureSets/' + feature_set + '/'
     if not os.path.exists('Isolation/' + feature_set):

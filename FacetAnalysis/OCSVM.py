@@ -40,9 +40,9 @@ def gatherHoldoutData(data_folder, cfg, split_factor):
     f = open(data_folder + cfg[1] + "_dataset.csv", 'r')
     reader = csv.reader(f, delimiter=',')
     fac = list(reader)
-    print "###########################################"
-    print "Configuration " + cfg[1]
-    print "###########################################"
+    print("###########################################")
+    print("Configuration " + cfg[1])
+    print("###########################################")
 
 
     #Convert data to floats (and labels to integers)
@@ -133,9 +133,9 @@ def gatherAllData(data_folder, cfg):
     f = open(data_folder + cfg[1] + "_dataset.csv", 'r')
     reader = csv.reader(f, delimiter=',')
     fac = list(reader)
-    print "###########################################"
-    print "Configuration " + cfg[1]
-    print "###########################################"
+    print("###########################################")
+    print("Configuration " + cfg[1])
+    print("###########################################")
 
     #Convert data to floats (and labels to integers)
     reg_data = []
@@ -182,7 +182,7 @@ def gatherAllData(data_folder, cfg):
     #Shuffle positive/negative samples for CV purposes
     x_shuf = []
     y_shuf = []
-    index_shuf = range(len(train_x))
+    index_shuf = list(range(len(train_x)))
     shuffle(index_shuf)
     for i in index_shuf:
         x_shuf.append(train_x[i])
@@ -249,10 +249,10 @@ def runWoodOCSVM(data_folder, cfg):
     pred_reg_test_outliers = sum(1 for i in pred_reg_test if i < 0)
     pred_anomaly_test_outliers = sum(1 for i in pred_anomaly_test if i > 0)
 
-    print pred_reg_test
-    print pred_anomaly_test
-    print "Error rate (Normal Data): " + str(pred_reg_test_outliers/(len(test_x)/2.0))
-    print "Error rate (Anomalous Data): " + str(pred_anomaly_test_outliers/(len(test_x)/2.0))
+    print(pred_reg_test)
+    print(pred_anomaly_test)
+    print("Error rate (Normal Data): " + str(pred_reg_test_outliers/(len(test_x)/2.0)))
+    print("Error rate (Anomalous Data): " + str(pred_anomaly_test_outliers/(len(test_x)/2.0)))
 
 #OCSVM grid search has a problem: Parameters are selected under some metric
 # This metric is interestingly defined for 1+ classes, not so for just one.
@@ -278,24 +278,24 @@ def runOCSVMGridSearch(data_folder, cfg):
     clf.fit(train_x, train_y[:len(train_y)/2]) #fit to normal samples only
 
     print("Best parameters set found on development set:")
-    print(clf.best_params_)
+    print((clf.best_params_))
     print("Grid scores on training set:")
     means = clf.cv_results_['mean_test_score']
     stds = clf.cv_results_['std_test_score']
     for mean, std, params in zip(means, stds, clf.cv_results_['params']):
-        print("%0.3f (+/-%0.03f) for %r"
-              % (mean, std * 2, params))
+        print(("%0.3f (+/-%0.03f) for %r"
+              % (mean, std * 2, params)))
 
     print("Classification results on test set:")
     y_true, y_pred = test_y, clf.predict(test_x)
-    print y_true
-    print y_pred
-    print(classification_report(y_true, y_pred))
-    print accuracy_score(y_true, y_pred)
-    print("accuracy: ", accuracy_score(y_true, y_pred))
-    print("precision: ", precision_score(y_true, y_pred))
-    print("recall: ", recall_score(y_true, y_pred))
-    print("area under curve (auc): ", roc_auc_score(y_true, y_pred))
+    print(y_true)
+    print(y_pred)
+    print((classification_report(y_true, y_pred)))
+    print(accuracy_score(y_true, y_pred))
+    print(("accuracy: ", accuracy_score(y_true, y_pred)))
+    print(("precision: ", precision_score(y_true, y_pred)))
+    print(("recall: ", recall_score(y_true, y_pred)))
+    print(("area under curve (auc): ", roc_auc_score(y_true, y_pred)))
 
 #OCSVM search over the nu parameter. Since the optimal choice will depend on the
 # results of classification with a test set, it can no longer be deemed semi-supervised.
@@ -331,10 +331,10 @@ def runOCSVMSearch(data_folder, cfg):
         y_true, y_pred = test_y, clf.predict(test_x)
         if(False):
             #print(classification_report(y_true, y_pred))
-            print("accuracy: ", accuracy_score(y_true, y_pred))
-            print("precision: ", precision_score(y_true, y_pred))
-            print("recall: ", recall_score(y_true, y_pred))
-            print("area under curve (auc): ", roc_auc_score(y_true, y_pred))
+            print(("accuracy: ", accuracy_score(y_true, y_pred)))
+            print(("precision: ", precision_score(y_true, y_pred)))
+            print(("recall: ", recall_score(y_true, y_pred)))
+            print(("area under curve (auc): ", roc_auc_score(y_true, y_pred)))
 
         acc = accuracy_score(y_true, y_pred)
         if(acc > max_acc):
@@ -346,9 +346,9 @@ def runOCSVMSearch(data_folder, cfg):
         #    max_roc = roc_auc
         #    max_nu_roc = nu
 
-        print "Iter " + str(n) + ", Nu = " + str(nu)
+        print("Iter " + str(n) + ", Nu = " + str(nu))
 
-    print "Max acc: " + str(max_acc) + ", Nu = " + str(max_nu_acc)
+    print("Max acc: " + str(max_acc) + ", Nu = " + str(max_nu_acc))
     #print "Max ROC: " + str(max_roc) + ", Nu = " + str(max_nu_roc)
 
     return max_nu_acc
@@ -392,18 +392,18 @@ def runOptimizedOCSVM(data_folder, cfg, max_nu_roc):
     PPV = TPositives/(TPositives+float(FPositives))
     NPV = TNegatives/(TNegatives+float(FNegatives))
 
-    print "Acc = " + str(accuracy)
-    print "TPR = " + str(TPR)
-    print "TNR = " + str(TNR)
-    print "FPR = " + str(FPR)
-    print "FNR = " + str(FNR)
-    print "PPV = " + str(PPV)
-    print "NPV = " + str(NPV)
+    print("Acc = " + str(accuracy))
+    print("TPR = " + str(TPR))
+    print("TNR = " + str(TNR))
+    print("FPR = " + str(FPR))
+    print("FNR = " + str(FNR))
+    print("PPV = " + str(PPV))
+    print("NPV = " + str(NPV))
 
     #print(classification_report(y_true, y_pred))
     labels=[-1,1]
-    print "Confusion Matrix\n"
-    print(confusion_matrix(y_true, y_pred, labels))
+    print("Confusion Matrix\n")
+    print((confusion_matrix(y_true, y_pred, labels)))
     #print("accuracy: ", accuracy_score(y_true, y_pred))
     #print("precision: ", precision_score(y_true, y_pred))
     #print("recall: ", recall_score(y_true, y_pred))
@@ -488,7 +488,7 @@ def runOptimizedOCSVM_CV(data_folder, cfg):
             if(mean_auc > max_auc):
                 max_auc = mean_auc
                 best_config = [mean_fpr, mean_tpr, nu, gamma]
-            print ("%f - nu:%f, gamma:%f" % (mean_auc, nu, gamma))
+            print(("%f - nu:%f, gamma:%f" % (mean_auc, nu, gamma)))
 
     """
     best_config = []
@@ -539,9 +539,9 @@ def runOptimizedOCSVM_CV(data_folder, cfg):
         print ("%f - nu:%f" % (mean_auc, nu))
     """
 
-    print "################\n# Summary"
-    print "Max. AUC: %f, Nu: %f, Gamma: %f" % (max_auc, best_config[2],best_config[3])
-    print "Avg. AUC: %f " % (np.mean(auc_report,axis=0))
+    print("################\n# Summary")
+    print("Max. AUC: %f, Nu: %f, Gamma: %f" % (max_auc, best_config[2],best_config[3]))
+    print("Avg. AUC: %f " % (np.mean(auc_report,axis=0)))
     #Figure properties
 
     fig = plt.figure()
@@ -576,8 +576,8 @@ if __name__ == "__main__":
     feature_set = 'PL_60'
     data_folder = 'FeatureSets/' + feature_set + '/'
 
-    print "\n#####################################"
-    print "One-class SVM - Packet Length Features - Set2"
+    print("\n#####################################")
+    print("One-class SVM - Packet Length Features - Set2")
     for cfg in cfgs:
-        print "One-class SVM"
+        print("One-class SVM")
         runOptimizedOCSVM_CV(data_folder, cfg)

@@ -10,11 +10,11 @@ def MergeDatasets(data_folder):
 
     features_files = glob.glob(data_folder + "/*_dataset.csv")
 
-    print "Merging full dataset..."
+    print("Merging full dataset...")
     header_saved = False
     with open(data_folder + '/full_dataset.csv','wb') as fout:
         for filename in features_files:
-            print "merging " + filename
+            print("merging " + filename)
             with open(filename) as fin:
                 header = next(fin)
                 if not header_saved:
@@ -22,7 +22,7 @@ def MergeDatasets(data_folder):
                     header_saved = True
                 for line in fin:
                     fout.write(line)
-    print "Dataset merged!"
+    print("Dataset merged!")
 
 
 def MergeSamples(data_folder):

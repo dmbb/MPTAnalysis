@@ -46,7 +46,7 @@ def ComputeBiGramDistributions(sampleFolder, cfg, binWidth):
             bin_dict = {}
             bigrams=[]
             #Generate the set of all possible bigrams
-            for i in product(range(0,1500, binWidth), repeat=2):
+            for i in product(list(range(0,1500, binWidth)), repeat=2):
                 bin_dict[str(i).replace(" ", "")] = 1
 
 
@@ -243,35 +243,35 @@ def Prepare_X_Fixed(fig_folder, cfg,binWidth,freq_dists):
 
     model_chat1, model_censored1 = buildModels(filtered_freq_dists1)
     acc1, tnr1, fnr1, tpr1, fpr1, ppv1, npv1 = X_Classify_Fixed(cfg,binWidth,filtered_freq_dists2, model_chat1, model_censored1)
-    print "1st Fold"
-    print "Acc = " + str(acc1)
-    print "TPR = " + str(tpr1)
-    print "TNR = " + str(tnr1)
-    print "FPR = " + str(fpr1)
-    print "FNR = " + str(fnr1)
-    print "PPV = " + str(ppv1)
-    print "NPV = " + str(npv1)
+    print("1st Fold")
+    print("Acc = " + str(acc1))
+    print("TPR = " + str(tpr1))
+    print("TNR = " + str(tnr1))
+    print("FPR = " + str(fpr1))
+    print("FNR = " + str(fnr1))
+    print("PPV = " + str(ppv1))
+    print("NPV = " + str(npv1))
 
     model_chat2, model_censored2 = buildModels(filtered_freq_dists2)
     acc2, tnr2, fnr2, tpr2, fpr2, ppv2, npv2 = X_Classify_Fixed(cfg,binWidth,filtered_freq_dists1, model_chat2, model_censored2)
-    print "\n2nd Fold"
-    print "Acc = " + str(acc2)
-    print "TPR = " + str(tpr2)
-    print "TNR = " + str(tnr2)
-    print "FPR = " + str(fpr2)
-    print "FNR = " + str(fnr2)
-    print "PPV = " + str(ppv2)
-    print "NPV = " + str(npv2)
+    print("\n2nd Fold")
+    print("Acc = " + str(acc2))
+    print("TPR = " + str(tpr2))
+    print("TNR = " + str(tnr2))
+    print("FPR = " + str(fpr2))
+    print("FNR = " + str(fnr2))
+    print("PPV = " + str(ppv2))
+    print("NPV = " + str(npv2))
 
-    print "\n###################"
-    print "Average"
-    print "Acc = " + str((acc1 + acc2)/2.0)
-    print "TPR = " + str((tpr1 + tpr2)/2.0)
-    print "TNR = " + str((tnr1 + tnr2)/2.0)
-    print "FPR = " + str((fpr1 + fpr2)/2.0)
-    print "FNR = " + str((fnr1 + fnr2)/2.0)
-    print "PPV = " + str((ppv1 + ppv2)/2.0)
-    print "NPV = " + str((npv1 + npv2)/2.0)
+    print("\n###################")
+    print("Average")
+    print("Acc = " + str((acc1 + acc2)/2.0))
+    print("TPR = " + str((tpr1 + tpr2)/2.0))
+    print("TNR = " + str((tnr1 + tnr2)/2.0))
+    print("FPR = " + str((fpr1 + fpr2)/2.0))
+    print("FNR = " + str((fnr1 + fnr2)/2.0))
+    print("PPV = " + str((ppv1 + ppv2)/2.0))
+    print("NPV = " + str((npv1 + npv2)/2.0))
 
 
 def Prepare_BadX_Fixed(fig_folder, cfg,binWidth,freq_dists):
@@ -323,41 +323,41 @@ def Prepare_BadX_Fixed(fig_folder, cfg,binWidth,freq_dists):
     filtered_freq_dists4.append(filtered_chat_samples[len(filtered_chat_samples)/2:])
     filtered_freq_dists4.append(filtered_bad_censored_samples[len(filtered_bad_censored_samples)/2:])
 
-    print len(filtered_freq_dists1)
-    print len(filtered_freq_dists1[0])
-    print len(filtered_freq_dists3)
-    print len(filtered_freq_dists3[0])
+    print(len(filtered_freq_dists1))
+    print(len(filtered_freq_dists1[0]))
+    print(len(filtered_freq_dists3))
+    print(len(filtered_freq_dists3[0]))
     model_chat1, model_censored1 = buildModels(filtered_freq_dists1)
     acc1, tnr1, fnr1, tpr1, fpr1, ppv1, npv1 = X_BadClassify_Fixed(cfg,binWidth,filtered_freq_dists3, model_chat1, model_censored1)
-    print "1st Fold"
-    print "Acc = " + str(acc1)
-    print "TPR = " + str(tpr1)
-    print "TNR = " + str(tnr1)
-    print "FPR = " + str(fpr1)
-    print "FNR = " + str(fnr1)
-    print "PPV = " + str(ppv1)
-    print "NPV = " + str(npv1)
+    print("1st Fold")
+    print("Acc = " + str(acc1))
+    print("TPR = " + str(tpr1))
+    print("TNR = " + str(tnr1))
+    print("FPR = " + str(fpr1))
+    print("FNR = " + str(fnr1))
+    print("PPV = " + str(ppv1))
+    print("NPV = " + str(npv1))
 
     model_chat2, model_censored2 = buildModels(filtered_freq_dists2)
     acc2, tnr2, fnr2, tpr2, fpr2, ppv2, npv2 = X_BadClassify_Fixed(cfg,binWidth,filtered_freq_dists4, model_chat2, model_censored2)
-    print "\n2nd Fold"
-    print "Acc = " + str(acc2)
-    print "TPR = " + str(tpr2)
-    print "TNR = " + str(tnr2)
-    print "FPR = " + str(fpr2)
-    print "FNR = " + str(fnr2)
-    print "PPV = " + str(ppv2)
-    print "NPV = " + str(npv2)
+    print("\n2nd Fold")
+    print("Acc = " + str(acc2))
+    print("TPR = " + str(tpr2))
+    print("TNR = " + str(tnr2))
+    print("FPR = " + str(fpr2))
+    print("FNR = " + str(fnr2))
+    print("PPV = " + str(ppv2))
+    print("NPV = " + str(npv2))
 
-    print "\n###################"
-    print "Average"
-    print "Acc = " + str((acc1 + acc2)/2.0)
-    print "TPR = " + str((tpr1 + tpr2)/2.0)
-    print "TNR = " + str((tnr1 + tnr2)/2.0)
-    print "FPR = " + str((fpr1 + fpr2)/2.0)
-    print "FNR = " + str((fnr1 + fnr2)/2.0)
-    print "PPV = " + str((ppv1 + ppv2)/2.0)
-    print "NPV = " + str((npv1 + npv2)/2.0)
+    print("\n###################")
+    print("Average")
+    print("Acc = " + str((acc1 + acc2)/2.0))
+    print("TPR = " + str((tpr1 + tpr2)/2.0))
+    print("TNR = " + str((tnr1 + tnr2)/2.0))
+    print("FPR = " + str((fpr1 + fpr2)/2.0))
+    print("FNR = " + str((fnr1 + fnr2)/2.0))
+    print("PPV = " + str((ppv1 + ppv2)/2.0))
+    print("NPV = " + str((npv1 + npv2)/2.0))
 
 def X_BadClassify_Fixed(cfg, binWidth, freq_dists, model_chat, model_censored):
     ##########################
@@ -468,7 +468,7 @@ def Prepare_X_RatioReproduction(fig_folder, cfg,binWidth,freq_dists):
         filtered_chat_samples = chat_samples
         filtered_censored_samples = censored_samples
     end_opt_time = time.time()
-    print "Finished bi-gram selection: " + "{0:.5f}".format(end_opt_time - start_opt_time)
+    print("Finished bi-gram selection: " + "{0:.5f}".format(end_opt_time - start_opt_time))
     #2x Cross validation
     filtered_freq_dists1 = []
     filtered_freq_dists2 = []
@@ -483,33 +483,33 @@ def Prepare_X_RatioReproduction(fig_folder, cfg,binWidth,freq_dists):
     start_model1_time = time.time()
     model_chat1, model_censored1 = buildModels(filtered_freq_dists1)
     end_model1_time = time.time()
-    print "Finished Model 1: "+ "{0:.5f}".format(end_model1_time - start_model1_time)
+    print("Finished Model 1: "+ "{0:.5f}".format(end_model1_time - start_model1_time))
     max_acc, max_delta, max_tpr, max_fpr, val90, val80, val70, specificity, sensitivity = X_Classify_RatioReproduction(cfg,binWidth,filtered_freq_dists2, model_chat1, model_censored1)
 
-    print "1st Fold"
-    print "TPR90 = " + str(val90)
-    print "TPR80 = " + str(val80)
-    print "TPR70 = " + str(val70)
-    print "Max acc: " + str(max_acc) + " Max TPR:" + str(max_tpr) + " Max FPR:" + str(max_fpr) + " delta:" + str(max_delta)
+    print("1st Fold")
+    print("TPR90 = " + str(val90))
+    print("TPR80 = " + str(val80))
+    print("TPR70 = " + str(val70))
+    print("Max acc: " + str(max_acc) + " Max TPR:" + str(max_tpr) + " Max FPR:" + str(max_fpr) + " delta:" + str(max_delta))
 
     start_model2_time = time.time()
     model_chat2, model_censored2 = buildModels(filtered_freq_dists2)
     end_model2_time = time.time()
-    print "Finished model 2: "+ "{0:.5f}".format(end_model2_time - start_model2_time)
+    print("Finished model 2: "+ "{0:.5f}".format(end_model2_time - start_model2_time))
     max_acc2, max_delta2, max_tpr2, max_fpr2, val902, val802, val702, specificity2, sensitivity2 = X_Classify_RatioReproduction(cfg,binWidth,filtered_freq_dists1, model_chat2, model_censored2)
 
-    print "2nd Fold"
-    print "TPR90 = " + str(val902)
-    print "TPR80 = " + str(val802)
-    print "TPR70 = " + str(val702)
-    print "Max acc: " + str(max_acc2) + " Max TPR:" + str(max_tpr2) + " Max FPR:" + str(max_fpr2) + " delta:" + str(max_delta2)
+    print("2nd Fold")
+    print("TPR90 = " + str(val902))
+    print("TPR80 = " + str(val802))
+    print("TPR70 = " + str(val702))
+    print("Max acc: " + str(max_acc2) + " Max TPR:" + str(max_tpr2) + " Max FPR:" + str(max_fpr2) + " delta:" + str(max_delta2))
 
-    print "###################"
-    print "Average FPR"
-    print "TPR90 = " + str((val902+val90)/2.0)
-    print "TPR80 = " + str((val802+val80)/2.0)
-    print "TPR70 = " + str((val702+val70)/2.0)
-    print "Max acc: " + str((max_acc+max_acc2)/2.0) + " Max TPR:" + str((max_tpr+max_tpr2)/2.0) + " Max FPR:" + str((max_fpr+max_fpr2)/2.0) + " delta:" + str((max_delta + max_delta2)/2.0)
+    print("###################")
+    print("Average FPR")
+    print("TPR90 = " + str((val902+val90)/2.0))
+    print("TPR80 = " + str((val802+val80)/2.0))
+    print("TPR70 = " + str((val702+val70)/2.0))
+    print("Max acc: " + str((max_acc+max_acc2)/2.0) + " Max TPR:" + str((max_tpr+max_tpr2)/2.0) + " Max FPR:" + str((max_fpr+max_fpr2)/2.0) + " delta:" + str((max_delta + max_delta2)/2.0))
 
     fig = plt.figure()
     ax1 = fig.add_subplot(111)
@@ -526,9 +526,9 @@ def Prepare_X_RatioReproduction(fig_folder, cfg,binWidth,freq_dists):
     print specificity2
     """
 
-    print "AUC"
+    print("AUC")
     auc = np.trapz(Sensitivity, 1 - Specificity)
-    print auc
+    print(auc)
     #ROC Curve
     ax1.plot(1 - specificity, sensitivity, color='red', lw=2, alpha=0.7, label = 'K-Fold ROC')
     ax1.plot(1 - specificity2, sensitivity2, color='red', lw=2, alpha=0.7)
@@ -669,17 +669,17 @@ if __name__ == "__main__":
     fig_folder = 'X2/' + os.path.dirname(sampleFolder) + '/'
 
 
-    print "###########################"
-    print os.path.dirname(sampleFolder)
-    print "###########################"
+    print("###########################")
+    print(os.path.dirname(sampleFolder))
+    print("###########################")
     for cfg in cfgs:
         random.seed(a=1) # re-seed
-        print "====================================="
-        print "X classifier - " + cfg[0] + " vs " + cfg[1]
+        print("=====================================")
+        print("X classifier - " + cfg[0] + " vs " + cfg[1])
         for binWidth in BIN_WIDTH:
-            print "---------------------"
-            print "Bin Width: " + str(binWidth)
-            print "---------------------"
+            print("---------------------")
+            print("Bin Width: " + str(binWidth))
+            print("---------------------")
             #Compute bigram distributions and shuffle the samples
             freq_dists = ComputeBiGramDistributions(sampleFolder, cfg, binWidth)
             x = random.sample(freq_dists[0], len(freq_dists[0]))
